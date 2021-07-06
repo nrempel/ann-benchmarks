@@ -1,0 +1,14 @@
+FROM ann-benchmarks
+
+RUN git clone https://github.com/nrempel/instant-distance
+RUN cd instant-distance && git fetch && git checkout nrempel/ann-benchmarks
+
+RUN apt-get install -y curl
+
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+
+RUN $HOME/.cargo/bin/cargo build --release --manifest-path ./instant-distance/Cargo.toml
+
+RUN cp instant-distance/target/release/libinstant_distance.so ./instant_distance.so
+
+RUN python3 -c 'import instant_distance'

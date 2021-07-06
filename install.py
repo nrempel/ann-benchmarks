@@ -15,7 +15,7 @@ def build(library, args):
     
     try:
         subprocess.check_call(
-            'docker build %s --rm -t ann-benchmarks-%s -f'
+            'docker build %s --progress=plain --rm -t ann-benchmarks-%s -f'
             ' install/Dockerfile.%s .' % (q, library, library), shell=True)
         return {library: 'success'}
     except subprocess.CalledProcessError:
