@@ -156,6 +156,14 @@ float:
           # This run group produces 3 algorithm instances -- Annoy("angular",
           # 100), Annoy("angular", 200), and Annoy("angular", 400) -- each of
           # which will be used to run 12 different queries.
+    instant-distance:
+      docker-tag: ann-benchmarks-instant_distance
+      module: ann_benchmarks.algorithms.instant_distance
+      constructor: InstantDistance
+      base-args: ["@metric"]
+      run-groups:
+        empty:
+          args: []
     milvus:
       docker-tag: ann-benchmarks-milvus
       module: ann_benchmarks.algorithms.milvus
