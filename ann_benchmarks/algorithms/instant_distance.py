@@ -4,8 +4,7 @@ from ann_benchmarks.algorithms.base import BaseANN
 
 
 class InstantDistance(BaseANN):
-    def __init__(self, metric, n_trees):
-        self._n_trees = n_trees
+    def __init__(self, metric):
         self._search_k = None
         self._metric = metric
 
@@ -27,5 +26,4 @@ class InstantDistance(BaseANN):
         return res
     
     def __str__(self):
-        return 'Annoy(n_trees=%d, search_k=%d)' % (self._n_trees,
-                                                   self._search_k)
+        return 'Annoy(search_k=%d)' % (self._search_k)
