@@ -10,9 +10,11 @@ class InstantDistance(BaseANN):
 
     def fit(self, X):        
         self._points = []
-        for i, x in enumerate(X):
+        for x in X:
             self._points.append([float(xi) for xi in x.tolist()])
-        (self._hnsw, _) = instant_distance.Hnsw.build(self._points, instant_distance.Config())
+            
+        (self._hnsw, ids) = instant_distance.Hnsw.build(self._points, instant_distance.Config())
+        self._id_map = {ids[i]: i for i in range(len(ids))}
 
     def set_query_arguments(self, search_k):
         self._search_k = search_k
@@ -20,7 +22,8 @@ class InstantDistance(BaseANN):
     def query(self, v, n):
         search = instant_distance.Search()
         self._hnsw.search([float(vi) for vi in v.tolist()], search)
-        return [self._points[candidate.pid] for candidate in search][:n]
+        res = [self._id_map[candidate.pid] for candidate in search][:n]
+        return res
     
     def __str__(self):
         return 'Annoy(n_trees=%d, search_k=%d)' % (self._n_trees,
