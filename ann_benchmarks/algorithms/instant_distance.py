@@ -4,7 +4,8 @@ from ann_benchmarks.algorithms.base import BaseANN
 
 
 class InstantDistance(BaseANN):
-    def __init__(self, metric):
+    def __init__(self, metric, n_trees):
+        self._n_trees = n_trees
         self._search_k = None
         self._metric = metric
 
