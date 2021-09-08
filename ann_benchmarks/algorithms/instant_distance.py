@@ -8,29 +8,20 @@ class InstantDistance(BaseANN):
         self._search_k = None
         self._metric = metric
 
-        print("init")
-        print("metric", metric)
-
-
-    def fit(self, X):
-        # self._annoy = annoy.AnnoyIndex(X.shape[1], metric=self._metric)
-        print("fit")
-        points = []
+    def fit(self, X):        
+        self._points = []
         for i, x in enumerate(X):
-            points.append([float(xi) for xi in x.tolist()])
-        self._hnsw = instant_distance.Hnsw.build(points, instant_distance.Config())
+            self._points.append([float(xi) for xi in x.tolist()])
+        (self._hnsw, _) = instant_distance.Hnsw.build(self._points, instant_distance.Config())
 
     def set_query_arguments(self, search_k):
         self._search_k = search_k
-        print("set_query_arguments", search_k)
 
     def query(self, v, n):
-        print("query", v, n)
         search = instant_distance.Search()
         self._hnsw.search([float(vi) for vi in v.tolist()], search)
-        return search[:n]
-        # return self._annoy.get_nns_by_vector(v.tolist(), n, self._search_k)
-
+        return [self._points[candidate.pid] for candidate in search][:n]
+    
     def __str__(self):
         return 'Annoy(n_trees=%d, search_k=%d)' % (self._n_trees,
                                                    self._search_k)
