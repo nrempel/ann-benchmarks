@@ -378,7 +378,7 @@ float:
       docker-tag: ann-benchmarks-instant_distance
       module: ann_benchmarks.algorithms.instant_distance
       constructor: InstantDistance
-      base-args: ["@metric", "@ef_search"]
+      base-args: ["@metric"]
       run-groups:
         base:
           args: [[100, 200, 400]]
