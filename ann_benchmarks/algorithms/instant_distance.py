@@ -26,4 +26,4 @@ class InstantDistance(BaseANN):
         return res
     
     def __str__(self):
-        return 'Annoy(search_k=%d)' % (self._search_k)
+        return 'InstantDistance'
