@@ -381,17 +381,9 @@ float:
       base-args: ["@metric"]
       run-groups:
         base:
-          args: [[100, 200, 400]]
-          query-args: [[100, 200, 400, 1000, 2000, 4000, 10000, 20000, 40000,
-                      100000, 200000, 400000]]
-    # instant-distance:
-    #   docker-tag: ann-benchmarks-instant_distance
-    #   module: ann_benchmarks.algorithms.instant_distance
-    #   constructor: InstantDistance
-    #   base-args: ["@metric"]
-    #   run-groups:
-    #     base:
-    #       args: [[100, 200, 400]]
+          # [ef_search, ef_construction, ml]
+          args: [[100, 200, 400], [100, 200, 400], [1, 2, 4, 8, 16, 32]]
+
     vamana(diskann):
       docker-tag: ann-benchmarks-diskann
       module: ann_benchmarks.algorithms.diskann
