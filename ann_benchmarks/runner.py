@@ -96,6 +96,9 @@ def run_individual_query(algo, X_train, X_test, distance, count, run_count,
 
 
 def run(definition, dataset, count, run_count, batch):
+    print("\n\n\n")
+    print(definition)
+    print("\n\n\n")
     algo = instantiate_algorithm(definition)
     assert not definition.query_argument_groups \
            or hasattr(algo, "set_query_arguments"), """\

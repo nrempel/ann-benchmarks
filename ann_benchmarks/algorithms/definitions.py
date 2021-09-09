@@ -21,6 +21,7 @@ def instantiate_algorithm(definition):
           (definition.module, definition.constructor, definition.arguments))
     module = importlib.import_module(definition.module)
     constructor = getattr(module, definition.constructor)
+    print(definition.arguments)
     return constructor(*definition.arguments)
 
 

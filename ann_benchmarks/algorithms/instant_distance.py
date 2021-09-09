@@ -4,20 +4,22 @@ from ann_benchmarks.algorithms.base import BaseANN
 
 
 class InstantDistance(BaseANN):
-    def __init__(self, metric):
-        self._search_k = None
+    def __init__(self, metric, n_trees):
         self._metric = metric
 
     def fit(self, X):        
         self._points = []
+
+        config = instant_distance.Config()
+
+
         for x in X:
             self._points.append([float(xi) for xi in x.tolist()])
             
-        (self._hnsw, ids) = instant_distance.Hnsw.build(self._points, instant_distance.Config())
+        (self._hnsw, ids) = instant_distance.Hnsw.build(self._points, )
         self._id_map = {ids[i]: i for i in range(len(ids))}
 
-    def set_query_arguments(self, search_k):
-        self._search_k = search_k
+    # def set_query_arguments(self, search_k):
 
     def query(self, v, n):
         search = instant_distance.Search()
