@@ -21,13 +21,13 @@ class InstantDistance(BaseANN):
         for x in X:
             self._points.append([float(xi) for xi in x.tolist()])
             
-        (self._hnsw, ids) = instant_distance.Hnsw.build(self._points, config)
-        self._id_map = {ids[i]: i for i in range(len(ids))}
+        (self._hnsw, self._ids) = instant_distance.Hnsw.build(self._points, config)
+        # self._id_map = {ids[i]: i for i in range(len(ids))}
 
     def query(self, v, n):
         search = instant_distance.Search()
         self._hnsw.search([float(vi) for vi in v.tolist()], search)
-        res = [self._id_map[candidate.pid] for candidate in search][:n]
+        res = [self._ids.index(candidate.pid) for candidate in search][:n]
         return res
     
     def __str__(self):
