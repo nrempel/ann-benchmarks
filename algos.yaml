@@ -382,7 +382,7 @@ float:
       run-groups:
         base:
           # [ef_search, ef_construction, ml]
-          args: [[100, 200, 400], [100, 200, 400], [1, 2, 4, 8, 16, 32]]
+          args: [[100], [100], [1, 2]]
 
     vamana(diskann):
       docker-tag: ann-benchmarks-diskann
