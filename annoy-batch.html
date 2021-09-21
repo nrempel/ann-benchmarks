@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-        <title>sift-128-euclidean (k = 10)</title>
+        <title>annoy-batch</title>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -47,7 +47,7 @@
             </nav>
 
                     <div class="container">
-                                                        <h2>Plots for sift-128-euclidean (k = 10) in batch mode</h2>
+                                                        <h2>Plots for annoy-batch in batch mode</h2>
                                                                 <h3>Recall/Queries per second (1/s)</h3>
             <div id="RecallQueries per second (1/s)">
             <canvas id="chartRecallQueries per second (1/s)" width="800" height="600"></canvas>
@@ -57,10 +57,10 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
+                            pointStyle: "rect",
+                            borderColor: "rgba(229, 102, 102, 1)",
                             data: [
                                                                     { x: 0.31739 , y: 47814.9011167, label: "Annoy(n_trees=100, search_k=100)" },
                                                                     { x: 0.41864 , y: 44544.0565501, label: "Annoy(n_trees=100, search_k=200)" },
@@ -80,73 +80,6 @@
                                                                     { x: 0.99945 , y: 1191.63266304, label: "Annoy(n_trees=400, search_k=200000)" },
                                                                     { x: 0.99955 , y: 1136.50897822, label: "Annoy(n_trees=100, search_k=200000)" },
                                                                     { x: 0.99981 , y: 657.896643866, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.26325 , y: 92306.8661736, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.2'])" },
-                                                                    { x: 0.65125 , y: 14552.7218626, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.64652 , y: 10431.8352357, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 10)" },
-                                                                    { x: 0.79021 , y: 7105.66582412, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 20)" },
-                                                                    { x: 0.8954 , y: 4473.30539978, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 40)" },
-                                                                    { x: 0.95931 , y: 2604.40184039, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 80)" },
-                                                                    { x: 0.98002 , y: 1875.68415697, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 120)" },
-                                                                    { x: 0.99279 , y: 1220.65830447, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 200)" },
-                                                                    { x: 0.99866 , y: 688.715684322, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 400)" },
-                                                                    { x: 0.99954 , y: 487.377959394, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 600)" },
-                                                                    { x: 0.99983 , y: 379.321172657, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(229, 102, 102, 1)",
-                            data: [
-                                                                    { x: 0.91036 , y: 513.031191442, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 37.0228690467, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.82353 , y: 34611.5518616, label: "KGraph(euclidean)" },
-                                                                    { x: 0.8329 , y: 33936.283057, label: "KGraph(euclidean)" },
-                                                                    { x: 0.91276 , y: 33797.3947111, label: "KGraph(euclidean)" },
-                                                                    { x: 0.92052 , y: 33054.2029148, label: "KGraph(euclidean)" },
-                                                                    { x: 0.94409 , y: 31047.1395251, label: "KGraph(euclidean)" },
-                                                                    { x: 0.96735 , y: 28575.4462461, label: "KGraph(euclidean)" },
-                                                                    { x: 0.97989 , y: 26574.5516107, label: "KGraph(euclidean)" },
-                                                                    { x: 0.98656 , y: 25400.0121117, label: "KGraph(euclidean)" },
-                                                                    { x: 0.98999 , y: 23425.4795341, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99243 , y: 21490.7031521, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99408 , y: 19909.9796168, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99545 , y: 18411.9383592, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99633 , y: 17360.4004606, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99701 , y: 16097.2921359, label: "KGraph(euclidean)" },
                                                             ]
                         },
                                                 ]},
@@ -219,58 +152,13 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
-                            fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
-                            data: [
-                                                                    { x: 0.99955 , y: 16.1638784409, label: "Annoy(n_trees=100, search_k=200000)" },
-                                                                    { x: 0.99981 , y: 52.6890563965, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.65125 , y: 19.2439172268, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.99983 , y: 1534.96837664, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
                             pointStyle: "rect",
                             borderColor: "rgba(229, 102, 102, 1)",
                             data: [
-                                                                    { x: 0.91036 , y: 394.938354015, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 22.0675570965, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.99701 , y: 40.8163411617, label: "KGraph(euclidean)" },
+                                                                    { x: 0.99955 , y: 16.1638784409, label: "Annoy(n_trees=100, search_k=200000)" },
+                                                                    { x: 0.99981 , y: 52.6890563965, label: "Annoy(n_trees=400, search_k=400000)" },
                                                             ]
                         },
                                                 ]},
@@ -343,59 +231,14 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
-                            fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
-                            data: [
-                                                                    { x: 0.95805 , y: 2295672.0, label: "Annoy(n_trees=100, search_k=10000)" },
-                                                                    { x: 0.99955 , y: 2313924.0, label: "Annoy(n_trees=100, search_k=200000)" },
-                                                                    { x: 0.99981 , y: 6041908.0, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.65125 , y: 1369740.0, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.99983 , y: 578616.0, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
                             pointStyle: "rect",
                             borderColor: "rgba(229, 102, 102, 1)",
                             data: [
-                                                                    { x: 0.91036 , y: 5279588.0, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 1007808.0, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.99701 , y: 1921976.0, label: "KGraph(euclidean)" },
+                                                                    { x: 0.95805 , y: 2295672.0, label: "Annoy(n_trees=100, search_k=10000)" },
+                                                                    { x: 0.99955 , y: 2313924.0, label: "Annoy(n_trees=100, search_k=200000)" },
+                                                                    { x: 0.99981 , y: 6041908.0, label: "Annoy(n_trees=400, search_k=400000)" },
                                                             ]
                         },
                                                 ]},
@@ -468,50 +311,10 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
-                            fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
-                            data: [
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
                             pointStyle: "rect",
                             borderColor: "rgba(229, 102, 102, 1)",
-                            data: [
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
                             data: [
                                                             ]
                         },
@@ -585,10 +388,10 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
+                            pointStyle: "rect",
+                            borderColor: "rgba(229, 102, 102, 1)",
                             data: [
                                                                     { x: 1.0739990612 , y: 47814.9011167, label: "Annoy(n_trees=100, search_k=100)" },
                                                                     { x: 1.0500037358 , y: 44544.0565501, label: "Annoy(n_trees=100, search_k=200)" },
@@ -608,70 +411,6 @@
                                                                     { x: 1.00001363534 , y: 1191.63266304, label: "Annoy(n_trees=400, search_k=200000)" },
                                                                     { x: 1.00001258152 , y: 1136.50897822, label: "Annoy(n_trees=100, search_k=200000)" },
                                                                     { x: 1.00000694085 , y: 657.896643866, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 1.08349355501 , y: 92306.8661736, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.2'])" },
-                                                                    { x: 1.0202460865 , y: 14552.7218626, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 1.02137610487 , y: 10431.8352357, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 10)" },
-                                                                    { x: 1.00972133039 , y: 7105.66582412, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 20)" },
-                                                                    { x: 1.0039356673 , y: 4473.30539978, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 40)" },
-                                                                    { x: 1.00124788346 , y: 2604.40184039, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 80)" },
-                                                                    { x: 1.000555666 , y: 1875.68415697, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 120)" },
-                                                                    { x: 1.00017891691 , y: 1220.65830447, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 200)" },
-                                                                    { x: 1.00003012106 , y: 688.715684322, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 400)" },
-                                                                    { x: 1.00000732394 , y: 487.377959394, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 600)" },
-                                                                    { x: 1.00000315657 , y: 379.321172657, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(229, 102, 102, 1)",
-                            data: [
-                                                                    { x: 1.00141134501 , y: 513.031191442, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 37.0228690467, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 1.08425143144 , y: 34611.5518616, label: "KGraph(euclidean)" },
-                                                                    { x: 1.0045211209 , y: 33797.3947111, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00372083145 , y: 33054.2029148, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00326677983 , y: 31047.1395251, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00214763619 , y: 28575.4462461, label: "KGraph(euclidean)" },
-                                                                    { x: 1.000643985 , y: 26574.5516107, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00049826834 , y: 25400.0121117, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00038061809 , y: 23425.4795341, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00022391117 , y: 21490.7031521, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00012541002 , y: 18411.9383592, label: "KGraph(euclidean)" },
-                                                                    { x: 1.00008536786 , y: 16097.2921359, label: "KGraph(euclidean)" },
                                                             ]
                         },
                                                 ]},
@@ -744,57 +483,12 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
-                            fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
-                            data: [
-                                                                    { x: 0.99981 , y: 10.0, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.65125 , y: 10.0, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.99983 , y: 10.0, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
                             pointStyle: "rect",
                             borderColor: "rgba(229, 102, 102, 1)",
                             data: [
-                                                                    { x: 0.91036 , y: 10.0, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 10.0, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.99701 , y: 10.0, label: "KGraph(euclidean)" },
+                                                                    { x: 0.99981 , y: 10.0, label: "Annoy(n_trees=400, search_k=400000)" },
                                                             ]
                         },
                                                 ]},
@@ -867,10 +561,10 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
+                            pointStyle: "rect",
+                            borderColor: "rgba(229, 102, 102, 1)",
                             data: [
                                                                     { x: 0.31739 , y: 48.0116437843, label: "Annoy(n_trees=100, search_k=100)" },
                                                                     { x: 0.41864 , y: 51.5371112961, label: "Annoy(n_trees=100, search_k=200)" },
@@ -884,73 +578,6 @@
                                                                     { x: 0.99852 , y: 1129.40209525, label: "Annoy(n_trees=100, search_k=100000)" },
                                                                     { x: 0.99955 , y: 2035.99271484, label: "Annoy(n_trees=100, search_k=200000)" },
                                                                     { x: 0.99981 , y: 9183.6735395, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.26325 , y: 14.8433161778, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.2'])" },
-                                                                    { x: 0.65125 , y: 94.1225987091, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.64652 , y: 55.4663668402, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 10)" },
-                                                                    { x: 0.79021 , y: 81.4302296677, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 20)" },
-                                                                    { x: 0.8954 , y: 129.348646759, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 40)" },
-                                                                    { x: 0.95931 , y: 222.168480696, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 80)" },
-                                                                    { x: 0.98002 , y: 308.482639708, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 120)" },
-                                                                    { x: 0.99279 , y: 474.019631767, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 200)" },
-                                                                    { x: 0.99866 , y: 840.137684057, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 400)" },
-                                                                    { x: 0.99954 , y: 1187.20181914, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 600)" },
-                                                                    { x: 0.99983 , y: 1525.39863764, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(229, 102, 102, 1)",
-                            data: [
-                                                                    { x: 0.91036 , y: 10290.9688301, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 27221.229093, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.82353 , y: 55.5298996037, label: "KGraph(euclidean)" },
-                                                                    { x: 0.8329 , y: 56.6348411455, label: "KGraph(euclidean)" },
-                                                                    { x: 0.91276 , y: 56.8675785938, label: "KGraph(euclidean)" },
-                                                                    { x: 0.92052 , y: 58.14619112, label: "KGraph(euclidean)" },
-                                                                    { x: 0.94409 , y: 61.9050910776, label: "KGraph(euclidean)" },
-                                                                    { x: 0.96735 , y: 67.259702034, label: "KGraph(euclidean)" },
-                                                                    { x: 0.97989 , y: 72.3239296059, label: "KGraph(euclidean)" },
-                                                                    { x: 0.98656 , y: 75.6683103752, label: "KGraph(euclidean)" },
-                                                                    { x: 0.98999 , y: 82.0463887283, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99243 , y: 89.4329043772, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99408 , y: 96.533298225, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99545 , y: 104.387488297, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99633 , y: 110.710349359, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99701 , y: 119.397472803, label: "KGraph(euclidean)" },
                                                             ]
                         },
                                                 ]},
@@ -1023,10 +650,10 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
+                            pointStyle: "rect",
+                            borderColor: "rgba(229, 102, 102, 1)",
                             data: [
                                                                     { x: 0.3675 , y: 47814.9011167, label: "Annoy(n_trees=100, search_k=100)" },
                                                                     { x: 0.48707 , y: 44544.0565501, label: "Annoy(n_trees=100, search_k=200)" },
@@ -1043,72 +670,6 @@
                                                                     { x: 0.9999 , y: 2089.72178522, label: "Annoy(n_trees=400, search_k=100000)" },
                                                                     { x: 0.99996 , y: 1191.63266304, label: "Annoy(n_trees=400, search_k=200000)" },
                                                                     { x: 0.99998 , y: 657.896643866, label: "Annoy(n_trees=400, search_k=400000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.31365 , y: 92306.8661736, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.2'])" },
-                                                                    { x: 0.77072 , y: 14552.7218626, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.7464 , y: 10431.8352357, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 10)" },
-                                                                    { x: 0.88705 , y: 7105.66582412, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 20)" },
-                                                                    { x: 0.96513 , y: 4473.30539978, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 40)" },
-                                                                    { x: 0.99364 , y: 2604.40184039, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 80)" },
-                                                                    { x: 0.99808 , y: 1875.68415697, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 120)" },
-                                                                    { x: 0.99959 , y: 1220.65830447, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 200)" },
-                                                                    { x: 0.99997 , y: 688.715684322, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 400)" },
-                                                                    { x: 0.99999 , y: 487.377959394, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 600)" },
-                                                                    { x: 1.0 , y: 379.321172657, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 800)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(229, 102, 102, 1)",
-                            data: [
-                                                                    { x: 0.97589 , y: 513.031191442, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 37.0228690467, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.88878 , y: 34611.5518616, label: "KGraph(euclidean)" },
-                                                                    { x: 0.89426 , y: 33936.283057, label: "KGraph(euclidean)" },
-                                                                    { x: 0.97072 , y: 33797.3947111, label: "KGraph(euclidean)" },
-                                                                    { x: 0.97515 , y: 33054.2029148, label: "KGraph(euclidean)" },
-                                                                    { x: 0.98527 , y: 31047.1395251, label: "KGraph(euclidean)" },
-                                                                    { x: 0.9932 , y: 28575.4462461, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99746 , y: 26574.5516107, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99848 , y: 25400.0121117, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99889 , y: 23425.4795341, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99929 , y: 21490.7031521, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99945 , y: 19909.9796168, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99965 , y: 18411.9383592, label: "KGraph(euclidean)" },
-                                                                    { x: 0.99981 , y: 16097.2921359, label: "KGraph(euclidean)" },
                                                             ]
                         },
                                                 ]},
@@ -1181,10 +742,10 @@
                                         type: "line",
                                         data: { datasets: [
                                                 {
-                            label: "annoy-batch",
+                            label: "sift-128-euclidean (k = 10)",
                             fill: false,
-                            pointStyle: "star",
-                            borderColor: "rgba(127, 229, 76, 1)",
+                            pointStyle: "rect",
+                            borderColor: "rgba(229, 102, 102, 1)",
                             data: [
                                                                     { x: 0.86589 , y: 47814.9011167, label: "Annoy(n_trees=100, search_k=100)" },
                                                                     { x: 0.96657 , y: 44544.0565501, label: "Annoy(n_trees=100, search_k=200)" },
@@ -1192,57 +753,6 @@
                                                                     { x: 0.99987 , y: 36221.6493732, label: "Annoy(n_trees=100, search_k=1000)" },
                                                                     { x: 0.99997 , y: 30762.0725416, label: "Annoy(n_trees=100, search_k=2000)" },
                                                                     { x: 1.0 , y: 18632.1923534, label: "Annoy(n_trees=100, search_k=4000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "BallTree(nmslib)-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(204, 76, 229, 1)",
-                            data: [
-                                                                    { x: 0.85308 , y: 92306.8661736, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.2'])" },
-                                                                    { x: 0.99748 , y: 14552.7218626, label: "Nmslib(method_name=vptree, index_param=['tuneK=10', 'desiredRecall=0.6'])" },
-                                                            ]
-                        },
-                                                {
-                            label: "hnsw(vespa)-batch",
-                            fill: false,
-                            pointStyle: "circle",
-                            borderColor: "rgba(76, 76, 153, 1)",
-                            data: [
-                                                                    { x: 0.99782 , y: 10431.8352357, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 10)" },
-                                                                    { x: 0.99999 , y: 7105.66582412, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 20)" },
-                                                                    { x: 1.0 , y: 4473.30539978, label: "VespaHnsw ({'M': 12, 'efConstruction': 500}, ef: 40)" },
-                                                            ]
-                        },
-                                                {
-                            label: "instant-distance-batch",
-                            fill: false,
-                            pointStyle: "rect",
-                            borderColor: "rgba(229, 102, 102, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 513.031191442, label: "InstantDistance" },
-                                                            ]
-                        },
-                                                {
-                            label: "kd-batch",
-                            fill: false,
-                            pointStyle: "cross",
-                            borderColor: "rgba(229, 204, 229, 1)",
-                            data: [
-                                                                    { x: 1.0 , y: 37.0228690467, label: "KDTree(leaf_size=1000)" },
-                                                            ]
-                        },
-                                                {
-                            label: "kgraph-batch",
-                            fill: false,
-                            pointStyle: "triangle",
-                            borderColor: "rgba(76, 229, 229, 1)",
-                            data: [
-                                                                    { x: 0.93012 , y: 34611.5518616, label: "KGraph(euclidean)" },
-                                                                    { x: 0.9984 , y: 33797.3947111, label: "KGraph(euclidean)" },
-                                                                    { x: 0.999 , y: 33054.2029148, label: "KGraph(euclidean)" },
-                                                                    { x: 1.0 , y: 26574.5516107, label: "KGraph(euclidean)" },
                                                             ]
                         },
                                                 ]},
